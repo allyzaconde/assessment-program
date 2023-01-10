@@ -40,7 +40,7 @@ function Dashboard(){
           
       }
     
-      function Accordion() {
+      function RenderAccordion() {
         const RecursiveAccordion = ({ items, recurse = false}) => {
             return(
                 <Accordion className='p-3' key={items.id}>
@@ -52,7 +52,6 @@ function Dashboard(){
                         var hasChildren = children.length > 0;
     
                         if(item.parent === null){
-                            console.log(item.name)
                             return(
                                 <Accordion.Item eventKey={index}>
                                     <Accordion.Header>
@@ -96,9 +95,12 @@ function Dashboard(){
         <div className="p-5">
             <h1>Territories</h1>
             <p>Here are the list of territories</p>
+            <Accordion style={{width: "50%"}} defaultActiveKey={['0']} alwaysOpen>
+            </Accordion>
             <div style={{width: "80%"}}>
-                {Accordion()}
+                {RenderAccordion()}
             </div>
+            
         </div>
     )
 }
