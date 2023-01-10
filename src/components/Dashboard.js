@@ -54,7 +54,7 @@ function Dashboard(){
     
                         if(item.parent === null){
                             return(
-                                <div>
+                                <div key={index}>
                                     {hasChildren &&(
                                         <Accordion.Item eventKey={index}>
                                             <Accordion.Header>
@@ -79,7 +79,7 @@ function Dashboard(){
                         }
                         if(recurse){   
                             return(
-                                <div>
+                                <div key={index}>
                                     {hasChildren && (
                                         <Accordion.Item eventKey={index}>
                                             <Accordion.Header>
