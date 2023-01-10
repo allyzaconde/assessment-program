@@ -40,7 +40,7 @@ function Dashboard(){
           
       }
     
-      function check() {
+      function Accordion() {
         const RecursiveAccordion = ({ items, recurse = false}) => {
             return(
                 <Accordion className='p-3' key={items.id}>
@@ -97,9 +97,8 @@ function Dashboard(){
             <h1>Territories</h1>
             <p>Here are the list of territories</p>
             <div style={{width: "80%"}}>
-                {check()}
+                {Accordion()}
             </div>
-            
         </div>
     )
 }
