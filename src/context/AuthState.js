@@ -63,7 +63,7 @@ const fetchLogin = (username, password, callback) =>
           body: JSON.stringify(loginDetails),
           headers: new Headers({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
           }),
         }
       );

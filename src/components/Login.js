@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthState';
 
 function Login(){
@@ -40,9 +40,11 @@ function Login(){
                 </div>
                 <button>Login</button>
             </form>
-            {state.loginError ? (
-              <div>{state.loginError}</div>
-            ):<></>}
+
+            { state.isLoginPending && <div>Please wait...</div> }
+            { state.isLoggedIn && <div>Success</div> }
+            { state.loginError && <div>Error</div> }
+
         </>
     )
 }
