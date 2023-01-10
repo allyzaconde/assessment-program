@@ -32,19 +32,12 @@ export const AuthProvider = ({ children }) => {
             }
         })
     }
-
-    const logout = () => {
-        setLoginPending(false);
-        setLoginSuccess(false);
-        setLoginError(null);
-    }
     
     return(
         <AuthContext.Provider 
             value = {{
                 state,
-                login,
-                logout
+                login
             }}
         >
             {children}
