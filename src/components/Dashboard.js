@@ -102,6 +102,7 @@ function Dashboard(){
                                 </div>
                             );
                         }
+                        return null
                     })}
                 </Accordion>
             );
