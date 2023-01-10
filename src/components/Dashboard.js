@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from "react";
 import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
 function Dashboard(){
 
@@ -8,7 +9,7 @@ function Dashboard(){
     let sorted = test.sort((p1, p2) => (p1.id > p2.id) ? 1 : (p1.id < p2.id) ? -1 : 0);
 
     useEffect(() => {
-        // getData();
+        getData();
         // eslint-disable-next-line
       }, []); 
     
@@ -53,35 +54,52 @@ function Dashboard(){
     
                         if(item.parent === null){
                             return(
-                                <Accordion.Item eventKey={index}>
-                                    <Accordion.Header>
-                                        {item.name}
-                                    </Accordion.Header>
-                                    <Accordion.Body>
-                                        {hasChildren &&(
-                                            <div>
-                                                <RecursiveAccordion items={children} recurse={true}/>
-                                            </div>
-                                        )}
-                                    </Accordion.Body>
-                                </Accordion.Item>
-
+                                <div>
+                                    {hasChildren &&(
+                                        <Accordion.Item eventKey={index}>
+                                            <Accordion.Header>
+                                                {item.name}
+                                            </Accordion.Header>
+                                            {hasChildren &&(
+                                                <Accordion.Body>
+                                                    <RecursiveAccordion items={children} recurse={true}/>
+                                                </Accordion.Body>
+                                            )}
+                                        </Accordion.Item>
+                                    )}
+                                    {!hasChildren && (
+                                        <Card>
+                                            <Card.Header>
+                                                {item.name}
+                                            </Card.Header>
+                                        </Card>
+                                    )}
+                                </div>
                             );
                         }
                         if(recurse){   
                             return(
-                                <Accordion.Item eventKey={index}>
-                                    <Accordion.Header>
-                                        {item.name}
-                                    </Accordion.Header>
-                                    <Accordion.Body>
-                                        {hasChildren &&(
-                                            <div>
-                                                <RecursiveAccordion items={children} recurse={true}/>
-                                            </div>
-                                        )}
-                                    </Accordion.Body>
-                                </Accordion.Item>
+                                <div>
+                                    {hasChildren && (
+                                        <Accordion.Item eventKey={index}>
+                                            <Accordion.Header>
+                                                {item.name}
+                                            </Accordion.Header>
+                                            {hasChildren &&(
+                                                <Accordion.Body>
+                                                    <RecursiveAccordion items={children} recurse={true}/>
+                                                </Accordion.Body>
+                                            )}
+                                        </Accordion.Item>
+                                    )}
+                                    {!hasChildren && (
+                                        <Card>
+                                            <Card.Header>
+                                                {item.name}
+                                            </Card.Header>
+                                        </Card>
+                                    )}
+                                </div>
                             );
                         }
                     })}
