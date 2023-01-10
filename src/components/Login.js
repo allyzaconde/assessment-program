@@ -1,12 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthState';
 
 function Login(){
+    let navigate = useNavigate();
     const { state, login } = useContext(AuthContext);
     const [loginDetails, setLogin] = useState({
         username: '',
         password: '',
     });
+
+    useEffect(() => {
+        if(state.isLoggedIn){
+            log();
+        }
+        // eslint-disable-next-line
+    }, [state.isLoggedIn]); 
+
+    async function log(){
+        navigate("/")
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -43,7 +56,7 @@ function Login(){
 
             { state.isLoginPending && <div>Please wait...</div> }
             { state.isLoggedIn && <div>Success</div> }
-            { state.loginError && <div>Error</div> }
+            { state.loginError && <div>{state.loginError.message}</div> }
 
         </>
     )

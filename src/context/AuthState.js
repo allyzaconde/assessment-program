@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
 
         fetchLogin( username, password, error => {
             setLoginPending(false);
-      
             if (!error) {
               setLoginSuccess(true);
             } else {
@@ -55,26 +54,31 @@ export const AuthProvider = ({ children }) => {
 
 const fetchLogin = (username, password, callback) => 
   setTimeout(() => {
-    const loginDetails = {username: username, password: password};
-    const request = new Request(
-        "https://netzwelt-devtest.azurewebsites.net/Account/SignIn",
-        {
-          method: 'POST',
-          body: JSON.stringify(loginDetails),
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          }),
-        }
-      );
-      fetch(request)
-        .then((response) => {
-          if (response.ok) {
-            return callback(null);
-          }
-            return callback(new Error('Invalid username or password'));
-          })
-        .catch((error) => {
-            console.log(error);
-        });
+        // const loginDetails = {username: username, password: password};
+        // const request = new Request("https://netzwelt-devtest.azurewebsites.net/Account/SignIn",
+        //     {
+        //       method: 'POST',
+        //       body: JSON.stringify(loginDetails),
+        //       headers: new Headers({
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        //       }),
+        //     }
+        //   );
+        //   fetch(request)
+        //     .then((response) => {
+        //       if (response.ok) {
+        //         return callback(null);
+        //       }
+        //         return callback(new Error('Invalid username or password'));
+        //       })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+    if (username === 'test' && password === 'test') {
+        return callback(null);
+    } else {
+    return callback(new Error('Invalid username or password'));
+    }
   }, 1000);
