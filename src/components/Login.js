@@ -30,35 +30,37 @@ function Login(){
     setLogin({ ...loginDetails, [userKey]: newValue });
 
     return(
-        <>
-            <p>login page</p>
+        <div className="m-auto pt-5" style={{width: "20%"}}>
+            <p className='text-center'>Login</p>
             <form onSubmit={onSubmit}>
-                <div>
+                <div className="form-group py-1">
                     <label>Username</label>
                     <input
                         type="text"
                         onChange={(e) => handleOnChange('username', e.target.value)}
                         placeholder="Enter Username"
+                        className="form-control"
                         required
                     />
                 </div>
-                <div>
+                <div className="form-group py-1">
                     <label>Password</label>
                     <input
                         type="text"
                         onChange={(e) => handleOnChange('password', e.target.value)}
                         placeholder="Enter Password"
+                        className="form-control"
                         required
                     />
                 </div>
-                <button>Login</button>
+                <button className="mt-3 m-auto p-2 rounded row justify-content-center">Login</button>
             </form>
-
-            { state.isLoginPending && <div>Please wait...</div> }
-            { state.isLoggedIn && <div>Success</div> }
-            { state.loginError && <div>{state.loginError.message}</div> }
-
-        </>
+            <div className="text-center p-4">
+                { state.isLoginPending && <div>Please wait...</div> }
+                { state.isLoggedIn && <div>Success</div> }
+                { state.loginError && <div>{state.loginError.message}</div> }
+            </div>
+        </div>
     )
 }
 
