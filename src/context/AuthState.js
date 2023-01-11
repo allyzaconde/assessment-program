@@ -46,32 +46,31 @@ export const AuthProvider = ({ children }) => {
 };
 
 const fetchLogin = (username, password, callback) => 
-  setTimeout(() => {
-        // const loginDetails = {username: username, password: password};
-        // const request = new Request("https://netzwelt-devtest.azurewebsites.net/Account/SignIn",
-        //     {
-        //       method: 'POST',
-        //       body: JSON.stringify(loginDetails),
-        //       headers: new Headers({
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        //       }),
-        //     }
-        //   );
-        //   fetch(request)
-        //     .then((response) => {
-        //       if (response.ok) {
-        //         return callback(null);
-        //       }
-        //         return callback(new Error('Invalid username or password'));
-        //       })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-    if (username === 'test' && password === 'test') {
-        return callback(null);
-    } else {
-    return callback(new Error('Invalid username or password'));
-    }
-  }, 1000);
+    setTimeout(() => {
+        const loginDetails = {username: username, password: password};
+        const request = new Request("http://localhost:8000/login",
+            {
+                method: 'POST',
+                body: JSON.stringify(loginDetails),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                }),
+            });
+            fetch(request)
+                .then((response) => {
+                    if(!response.ok){                        
+                        return callback(new Error('Invalid email and password'));
+                    }
+                    return response.json()
+                        .then((data) => {
+                            console.log(data)
+                            return callback(null);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+    }, 1000);
