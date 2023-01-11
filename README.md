@@ -14,8 +14,13 @@ npm i
 ```
 npm start
 ```
-3. Open the website on the browser with the address `127.0.0.1:3000/`
-4. Log in credentials:
+3. Run the following command to open middleware:
+```
+cd src/middleware
+node app.js
+```
+4. Open the website on the browser with the address `127.0.0.1:3000/`
+5. Log in credentials:
 ```
 foo
 bar
