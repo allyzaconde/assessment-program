@@ -17,6 +17,7 @@ npm start
 3. Run the following command to open middleware:
 ```
 cd src/middleware
+npm i
 node app.js
 ```
 4. Open the website on the browser with the address `127.0.0.1:3000/`
